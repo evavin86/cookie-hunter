@@ -1,0 +1,20 @@
+[project]
+name = "pechenka1"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "albumentations>=2.0.8",
+    "mss>=10.2.0",
+    "opencv-python>=5.0.0.93",
+    "pyautogui>=0.9.54",
+    "ultralytics>=8.4.191",
+]
+
+[project.scripts]
+pechenka1 = "pechenka1:main"
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"

@@ -1,0 +1,105 @@
+<div align="center">
+
+# 🍪 Cookie Hunter
+
+**Real-time screen object detection bot powered by YOLOv8**
+
+Finds 🍪 cookies and ⚡ upgrades on the screen and clicks them automatically.
+
+![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
+![YOLOv8](https://img.shields.io/badge/YOLOv8-Ultralytics-FF6600)
+![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-5C3EE8?logo=opencv&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Linux-FCC624?logo=linux&logoColor=black)
+![License](https://img.shields.io/badge/License-MIT-22c55e)
+
+</div>
+
+## ✨ Features
+
+- 🎯 **Custom YOLOv8 model** trained to detect two classes: `cookie` and `upgrade`
+- 🖥️ **Real-time screen capture** with `mss` — fast and lightweight
+- 🧠 **Confidence filtering** (default threshold `0.7`) to avoid false clicks
+- 🎮 **Priority-based clicking** — the `Game` class decides what to click first
+- 🖱️ **Automatic mouse control** via `pyautogui`
+
+## 🧠 How it works
+
+1. `mss` grabs a screenshot of the screen.
+2. The `Upgrade` class runs YOLOv8 inference on the frame (`ultralytics`).
+3. Detections are filtered by class ID and confidence:
+
+   | Class ID | Name | Description |
+   |:---:|:---|:---|
+   | `0` | `cookie` | 🍪 the main target |
+   | `1` | `upgrade` | ⚡ available upgrade |
+
+4. The center of each detection box is computed and the `Game` class clicks the highest-priority target.
+
+## 🚀 Quick start
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/evavin86/cookie-hunter.git
+cd cookie-hunter
+
+# 2. Create a virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Run
+python app.py
+```
+
+> The trained model weights are included in the repository (`best.pt`) — no extra downloads needed.
+
+## 🏋️ Training your own model
+
+The dataset layout is described in `data.yaml` (classes: `cookie`, `upgrade`).
+
+```bash
+python train.py
+```
+
+After training the best weights are saved to `runs/<train>/weights/best.pt` —
+only this best checkpoint is kept in the repository.
+
+## 📁 Project structure
+
+```
+cookie-hunter/
+├── app.py            # main application: detection + clicking loop
+├── train.py          # YOLOv8 training script
+├── data.yaml         # dataset configuration (paths + classes)
+├── classes.txt       # class names used for labeling
+└── best.pt           # trained model weights
+```
+
+## ⚙️ Configuration
+
+| Parameter | Default | Description |
+|:---|:---:|:---|
+| `COOKIE_CLASS_ID` | `0` | class index for cookies |
+| `UPGRADE_CLASS_ID` | `1` | class index for upgrades |
+| `confidence_threshold` | `0.7` | minimum detection confidence |
+
+## 📸 Demo
+
+<!-- Add a screenshot or GIF of the bot in action:
+1. Save the image as docs/demo.png in the repository
+2. Remove the HTML comment marks below
+
+<p align="center"><img src="docs/demo.png" alt="Cookie Hunter demo" width="600"></p>
+-->
+
+## ⚠️ Disclaimer
+
+This project was created **for educational purposes only** — it demonstrates a
+custom YOLOv8 training pipeline and computer-vision automation. Automating games
+may violate their terms of service. Use responsibly and at your own risk.
+
+## 📄 License
+
+Released under the [MIT License](LICENSE).
