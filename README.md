@@ -5,6 +5,7 @@
 
 Вариант 1 — установить всё сразу (рекомендуется)
 pip install -r requirements.txt
+
 Вариант 2 — установить по одной
 pip install ultralytics
 pip install opencv-python
@@ -12,6 +13,7 @@ pip install numpy
 pip install pillow
 pip install pyautogui
 pip install mss
+
 Linux
 Проект поддерживает Linux (X11, не Wayland). Скрипты автоматически определяют ОС и переключаются на mss для скриншотов.
 
@@ -26,6 +28,6 @@ sudo dnf install python3-xlib scrot
 
 # Arch Linux
 sudo pacman -S python-xlib scrot
-Затем установите Python-библиотеки:
 
+Затем установите Python-библиотеки:
 pip install -r requirements.txt
