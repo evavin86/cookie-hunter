@@ -17,17 +17,6 @@ pip install mss
 Linux
 Проект поддерживает Linux (X11, не Wayland). Скрипты автоматически определяют ОС и переключаются на mss для скриншотов.
 
-Первоначальная настройка на Linux
-Установите системные пакеты для pyautogui (нужен для управления мышью, на X11):
-
-# Ubuntu / Debian
-sudo apt update && sudo apt install -y python3-xlib scrot
-
-# Fedora
-sudo dnf install python3-xlib scrot
-
-# Arch Linux
-sudo pacman -S python-xlib scrot
 
 Затем установите Python-библиотеки:
 pip install -r requirements.txt
